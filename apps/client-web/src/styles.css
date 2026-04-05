@@ -1,0 +1,19 @@
+
+@import "tailwindcss";
+
+
+.test-clase {
+  @apply bg-red-500 text-white p-10;
+}
+
+
+@theme {
+  --color-aura: var(--arcani-aura);
+  --color-destello: var(--arcani-destello);
+}
+
+:root {
+  /* Valores iniciales */
+  --arcani-aura: #FF6B00;
+  --arcani-destello: #FFCC00;
+}
