@@ -7,5 +7,7 @@
 			"path": "D:/PROYECTOS WEB/ARCANI/MANUALES MD"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "MANUALES MD"
+	}
 }

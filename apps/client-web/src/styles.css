@@ -2,6 +2,20 @@
 @import "tailwindcss";
 
 
+
+@theme {
+  /* Ahora Tailwind reconocerá 'bg-aura' y 'text-aura' */
+  --color-aura: var(--aura-nicho);
+  --color-destello: var(--destello-nicho);
+}
+
+:root {
+  /* Valores por defecto (Base ARCANI) */
+  --aura-nicho: #00F0FF;
+  --destello-nicho: #FFF000;
+}
+
+/*
 .test-clase {
   @apply bg-red-500 text-white p-10;
 }
@@ -13,7 +27,9 @@
 }
 
 :root {
-  /* Valores iniciales */
+
   --arcani-aura: #FF6B00;
   --arcani-destello: #FFCC00;
 }
+
+*/

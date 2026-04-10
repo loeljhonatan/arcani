@@ -3,7 +3,7 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { appRoutes } from './app.routes';
 //import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideAnimations } from '@angular/platform-browser/animations'; // Importación actualizada
@@ -20,9 +20,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
 
     provideBrowserGlobalErrorListeners(),
-    provideRouter(appRoutes),
 
+    //provideRouter(appRoutes),
 
+    provideRouter(appRoutes, withComponentInputBinding()), // Importante para recibir slugs en los componentes
 
     provideZoneChangeDetection({ eventCoalescing: true }),
     //provideAnimationsAsync(),
@@ -30,16 +31,17 @@ export const appConfig: ApplicationConfig = {
     //provideAnimationsAsync(),
      provideAnimations(),
 
+
     provideHttpClient(withFetch()), // <-- Activa el cliente HTTP moderno
 
     providePrimeNG({
         theme: {
             preset: Aura,
             options: {
-                darkModeSelector: '.dark-mode', // Para el ADN Geek oscuro
+               // darkModeSelector: '.dark-mode', // Para el ADN Geek oscuro
                 cssLayer: {
                     name: 'primeng',
-                    order: 'tailwind-base, primeng, tailwind-utilities'
+                    order: 'primeng, tailwind-base,tailwind-utilities'
                 }
             }
         }
