@@ -1,13 +1,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-
-    "ignoreDeprecations": "6.0",//Silenciar el aviso
-
+    "ignoreDeprecations": "6.0",
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node", //node
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -16,18 +14,20 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-
     "baseUrl": ".",
     "paths": {
       "@arcani/shared-domain": ["libs/shared/domain/src/index.ts"],
-      "@arcani/core-reactive-engine": ["libs/core/reactive-engine/src/index.ts"],
+      "@arcani/core-reactive-engine": [
+        "libs/core/reactive-engine/src/index.ts"
+      ],
       "@arcani/shared-auth": ["libs/shared/auth/src/index.ts"],
-      "@arcani/data-access-api-client": ["libs/data-access/api-client/src/index.ts"]
+      "@arcani/data-access-api-client": [
+        "libs/data-access/api-client/src/index.ts"
+      ],
+      "@arcani/data-access-db-entities": [
+        "libs/data-access/db-entities/src/index.ts"
+      ]
     }
-
-
-
   },
   "exclude": ["node_modules", "tmp"]
 }
-

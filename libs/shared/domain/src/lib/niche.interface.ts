@@ -7,3 +7,11 @@ export interface ArcaniNiche {
   destelloColor: string; // Hex: Para acentos (PrimeNG)
   ctaText: string;     // Ej: '¡RECLAMAR TESORO!'
 }
+
+
+export interface Nichex {
+  uuid: string; // El único ID que conoce el cliente
+  name: string;
+  fandomType: string;
+  createdAt: Date;
+}

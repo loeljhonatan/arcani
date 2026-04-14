@@ -4,32 +4,18 @@
 
 
 @theme {
-  /* Ahora Tailwind reconocerá 'bg-aura' y 'text-aura' */
-  --color-aura: var(--aura-nicho);
-  --color-destello: var(--destello-nicho);
+  /* Registramos los colores vinculándolos a las variables que inyecta el ThemeService */
+  --color-primary: hsl(var(--niche-primary-raw) / <alpha-value>);
+  --color-accent: hsl(var(--niche-accent-raw) / <alpha-value>);
+
+  /* Registramos el radio de borde dinámico */
+  --radius-niche: var(--niche-radius);
 }
 
+/* Base neutra para evitar errores de renderizado inicial */
 :root {
-  /* Valores por defecto (Base ARCANI) */
-  --aura-nicho: #00F0FF;
-  --destello-nicho: #FFF000;
+  --niche-primary-raw: 190 100% 50%; /* Cian Maestro */
+  --niche-accent-raw: 60 100% 50%;   /* Amarillo Volt */
+  --niche-radius: 0.75rem;
 }
 
-/*
-.test-clase {
-  @apply bg-red-500 text-white p-10;
-}
-
-
-@theme {
-  --color-aura: var(--arcani-aura);
-  --color-destello: var(--arcani-destello);
-}
-
-:root {
-
-  --arcani-aura: #FF6B00;
-  --arcani-destello: #FFCC00;
-}
-
-*/
