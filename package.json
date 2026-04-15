@@ -29,7 +29,7 @@
     "@nx/vitest": "^22.6.5",
     "@nx/web": "^22.6.5",
     "@nx/webpack": "^22.6.5",
-    "@nx/workspace": "22.6.4",
+    "@nx/workspace": "^22.6.5",
     "@oxc-project/runtime": "^0.115.0",
     "@playwright/test": "^1.36.0",
     "@schematics/angular": "~21.2.0",
@@ -74,6 +74,7 @@
     "@angular/platform-browser": "~21.2.0",
     "@angular/router": "~21.2.0",
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.0",
@@ -92,6 +93,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "typeorm": "^0.3.28",
+    "typeorm-naming-strategies": "^4.1.0",
     "zone.js": "^0.16.1"
   }
 }

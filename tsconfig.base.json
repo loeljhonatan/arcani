@@ -26,7 +26,15 @@
       ],
       "@arcani/data-access-db-entities": [
         "libs/data-access/db-entities/src/index.ts"
-      ]
+      ],
+      "@arcani/data-access-subscribers": [
+        "libs/data-access/subscribers/src/index.ts"
+      ],
+      "@arcani/data-access-migrations": [
+        "libs/data-access/migrations/src/index.ts"
+      ],
+      "@arcani/core-studio-logic": ["libs/core/studio-logic/src/index.ts"],
+      "@arcani/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
