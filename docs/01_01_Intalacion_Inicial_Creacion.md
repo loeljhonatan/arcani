@@ -13,7 +13,6 @@ npx create-nx-workspace@latest arcani --preset=apps
 
 > + MENSAJE
 NX Let's create a new workspace [https://nx.dev/getting-started/intro]? Speed up your CI with Nx Cloud? ... YesSkip for nowNo, don't ask again
-
 NX ¿Creamos un nuevo espacio de trabajo [https://nx.dev/getting-started/intro]? ¿Acelerar tu CI con Nx Cloud? ... SíOmitir por ahoraNo, no volver a preguntar
 
 > + RESPUESTA --> Selecciona "Skip for now" (Omitir por ahora).
