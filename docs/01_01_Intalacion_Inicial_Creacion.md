@@ -202,7 +202,7 @@ rspack
 webpack
 
 > #### RESPUESTA --> Selecciona esbuild.
-¿Por qué elegir esbuild para el Admin Dashboard?
+Selecciona esbuild. ¿Por qué elegir esbuild para el Admin Dashboard?
 Consistencia: Al usar el mismo motor que en la web-arcani, garantizas que los componentes de PrimeNG y los estilos de Tailwind se comporten exactamente igual en ambas aplicaciones.
 Rendimiento en el Panel: El dashboard de inventariado suele manejar tablas grandes y muchos datos. esbuild optimiza el empaquetado para que la carga inicial sea ultrarrápida.
 Preparado para el Futuro: Es el estándar de Angular 21 y el que mejor soporte tiene para Signals, lo que te permitirá ver cambios de stock o estados de "ARCANI Studio" en tiempo real sin recargas pesadas.
