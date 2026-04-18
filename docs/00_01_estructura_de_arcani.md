@@ -1,5 +1,30 @@
 # ESTRUCTURA DEL PROYECTO MONOREPO ARCANI.
 
+# 💡 Leyenda de Estados
+- ⚪ [VACÍO] : Archivo creado pero sin lógica interna.
+- 🟢 [IMPLEMENTADO] : Código funcional y probado.
+- 🟡 [PENDIENTE] : Definido en arquitectura pero no creado.
+- 🔵 [INFO] : Nota sobre el uso o propósito estratégico.
+
+
+## 📋 Convenciones de Estado del Proyecto
+
+
+| Emoji | TÉRMINO | DESCRIPCIÓN | USO IDEAL |
+| :---: | :--- | :--- | :--- |
+| 🟡 | **REFERENCIA** | Contexto, guías o notas de arquitectura. | Documentación y archivos de lectura. |
+| ⚪ | **ESTRUCTURA** | Archivo creado pero sin lógica interna (maqueta). | Scaffolding o carpetas recién creadas. |
+| ⚙️ | **EN DESARROLLO** | Código en proceso de escritura activa. | Tareas asignadas que están "in-progress". |
+| 🧪 | **EN PRUEBAS** | Fase de validación, QA o corrección de errores. | Código terminado que busca aprobación. |
+| 🟢 | **IMPLEMENTADO** | En uso, pero sujeto a ajustes por desarrollo. | Código funcional integrado al proyecto. |
+| 🚀 | **HABILITADO** | Funcionalidad activa y operativa al 100%. | Módulos listos para el usuario final. |
+| 🔴 | **PENDIENTE** | Tarea o archivo que aún no se ha iniciado. | Backlog o funcionalidades futuras. |
+| 🔒 | **VITAL** | Configuración base y estructural sensible. | Archivos `config`, `.env`, o `main.ts`. |
+| 🟠 | **OBSOLETO** | Código antiguo marcado para su eliminación. | Refactorizaciones que dejan código atrás. |
+
+
+
+
 ## ESTRUCTURA RAIZ 
 📂 Estructura de arcani
 ```bash
@@ -351,21 +376,21 @@ libs/data-access/db-entities/
 │   ├── index.ts                            # EL ORÁCULO: Exportación total de Entidades y Tipos
 │   └── lib/    
 │       ├── core/                           # --- DOMINIO: ADN Y SISTEMA ---
-│       │   ├── role-level.entity.ts        # Jerarquía de Poder (Extiende: Internal)     ✅ HABILITADO	
-│       │   ├── role.entity.ts              # Cargos específicos (Extiende: Internal)     ✅ HABILITADO	
-│       │   ├── niche.entity.ts             # Fuente de Verdad (Extiende: External)       ✅ HABILITADO		
-│       │   ├── niche-stock.entity.ts       # Bazar Engine / Caché Analítica              ✅ HABILITADO	
-│       │   ├── niche-theme.entity.ts       # Motor Reactivo HSL                          ✅ HABILITADO
-│       │   ├── niche-identity.entity.ts    # Capa de Branding y Lore                     ✅ HABILITADO
-│       │   ├── event.entity.ts             # Anarquía Temporal                           ✅ HABILITADO
-│       │   └── niche-event.entity.ts       # Conector de Realidades                      ✅ HABILITADO
+│       │   ├── role-level.entity.ts        # Jerarquía de Poder (Extiende: Internal)         ✅ HABILITADO	
+│       │   ├── role.entity.ts              # Cargos específicos (Extiende: Internal)         ✅ HABILITADO	
+│       │   ├── niche.entity.ts             # Fuente de Verdad (Extiende: External)           ✅ HABILITADO		
+│       │   ├── niche-stock.entity.ts       # Bazar Engine / Caché Analítica                  ✅ HABILITADO	
+│       │   ├── niche-theme.entity.ts       # Motor Reactivo HSL                              ✅ HABILITADO
+│       │   ├── niche-identity.entity.ts    # Capa de Branding y Lore                         ✅ HABILITADO
+│       │   ├── event.entity.ts             # Anarquía Temporal                               ✅ HABILITADO
+│       │   └── niche-event.entity.ts       # Conector de Realidades                          ✅ HABILITADO
 │       │
 │       ├── store/                          # --- DOMINIO: EXPERIENCIA COMERCIAL ---
-│       │   ├── product.entity.ts           # El Padre / La Card (Extiende: External)     ✅ HABILITADO
-│       │   ├── product-niche.entity.ts     # Ubicuidad de productos                      ✅ HABILITADO
-│       │   ├── product-image.entity.ts     # Galería de Familia                          ✅ HABILITADO
-│       │   ├── product-variant.entity.ts   # El SKU Comercial y Precio                   ✅ HABILITADO
-│       │   └── variant-image.entity.ts     # Fidelidad Visual del Modelo                 ✅ HABILITADO
+│       │   ├── product.entity.ts           # El Padre / La Card (Extiende: External)         ✅ HABILITADO
+│       │   ├── product-niche.entity.ts     # Ubicuidad de productos                          ✅ HABILITADO
+│       │   ├── product-image.entity.ts     # Galería de Familia                              ✅ HABILITADO
+│       │   ├── product-variant.entity.ts   # El SKU Comercial y Precio                       ✅ HABILITADO
+│       │   └── variant-image.entity.ts     # Fidelidad Visual del Modelo                     ✅ HABILITADO
 │       │
 │       ├── operations/                     # --- DOMINIO: GOBERNANZA LOGÍSTICA ---
 │       │   └── stock-lot.entity.ts         # Corazón del PEPS y Veto                         ✅ HABILITADO
@@ -377,11 +402,11 @@ libs/data-access/db-entities/
 │       │   └── 1713210000-InitialSchema.ts # Historial físico de MySQL
 │       │
 │       ├── subscribers/                    # --- GESTIÓN REACTIVA GLOBAL ---                 📅 PENDIENTE
-│       │   ├── stock-safety.subscriber.ts  # Alerta de stock crítico (Bazar Mode)         📅 PENDIENTE
-│       │   └── audit.subscriber.ts         # Rastro de cambios estratégico                 📅 PENDIENTE
+│       │   ├── stock-safety.subscriber.ts  # Alerta de stock crítico (Bazar Mode)            📅 PENDIENTE
+│       │   └── audit.subscriber.ts         # Rastro de cambios estratégico                   📅 PENDIENTE
 │       │
 │       ├── transformers/                   # --- PUENTES TÉCNICOS ---
-│       │   └── uuid-binary.transformer.ts  # Conversor BINARY(16) ↔ UUID String           ✅ HABILITADO
+│       │   └── uuid-binary.transformer.ts  # Conversor BINARY(16) ↔ UUID String              ✅ HABILITADO
 │       │
 │       ├── base.entity.ts                  # EL ANCESTRO: Auditoría (Created/Updated/Active) ✅ HABILITADO
 │       ├── base-internal.entity.ts         # IDENTIDAD CORTA: (ID: TINYINT)                  ✅ HABILITADO
@@ -397,16 +422,16 @@ libs/shared/domain/
 │   ├── index.ts                        # EL MANIFIESTO: Exportación pública de toda la lib
 │   └── lib/
 │       ├── constants/                  # --- CONFIGURACIÓN ESTRATÉGICA ---
-│       │   ├── api.token.ts            # El Enchufe: InjectionToken para ARCANI_API_URL
-│       │   ├── api-routes.ts           # El Mapa: Diccionario de Endpoints (Nichos, Auth, etc.)
-│       │   └── branding.constants.ts   # El ADN: Colores maestros (Cian Core / Amarillo Volt)
+│       │   ├── api.token.ts            # El Enchufe: InjectionToken para ARCANI_API_URL        ✅ HABILITADO
+│       │   ├── api-routes.ts           # El Mapa: Diccionario de Endpoints (Nichos, Auth, etc.)✅ HABILITADO
+│       │   └── branding.constants.ts   # El ADN: Colores maestros (Cian Core / Amarillo Volt)  
 │       │
 │       ├── interfaces/                 # --- ESTRUCTURAS LÓGICAS (CONTRATOS) ---
 │       │   ├── core/                   # ADN del Ecosistema
 │       │   │   ├── niche.interface.ts  # Contrato del Nicho y su Metadata
 │       │   │   └── role.interface.ts   # Definición de jerarquías RBAC
 │       │   ├── store/                  # Experiencia Comercial
-│       │   │   ├── product.interface.ts# Estructura de la Card/Producto
+│       │   │   ├── product.interface.ts  # Estructura de la Card/Producto
 │       │   │   └── stock.interface.ts  # Contrato de disponibilidad y Veto
 │       │   └── users/                  # Identidad
 │       │       └── user.interface.ts   # Perfil de usuario (Firebase + Roles)
