@@ -10,7 +10,18 @@ En este Caso estamos Asignado el nombre arcani al protecto
 npx create-nx-workspace@latest arcani --preset=apps
 ```
 ----------------------------------------------------------------------------------------------------
+***
+---
+# HOLA
+# FIN
+----
 
+***
+# HOLA
+# FIN
+***
+_____
+____
 #### MENSAJE
 NX Let's create a new workspace [https://nx.dev/getting-started/intro]? Speed up your CI with Nx Cloud? ... YesSkip for nowNo, don't ask again
 
@@ -45,6 +56,7 @@ Nx cambió la estructura de sus paquetes hace un tiempo. El plugin oficial para 
 ```bash
 npm install --save-dev @nx/angular @nx/nest
 ```
+____________________________________________________________________________________________________
 ____________________________________________________________________________________________________
 
 ## Paso 4: Genera el Backend (El Corazón de ARCANI en NestJS):
