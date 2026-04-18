@@ -1,8 +1,8 @@
 # ESTRUCTURA RAIZ MONOREPO.
 
-
 ## ESTRUCTURA RAIZ 
-
+### ESTRUCTURA RAIZ 
+```bash
 arcani/
 ├── .angular/                      # Cache de compilación de Angular (Auto-generado)
 ├── .nx/                           # Cache y scripts internos del motor de Nx
@@ -33,10 +33,10 @@ arcani/
 ├── README.md                      # Manual principal y descripción del ecosistema ARCANI
 ├── tsconfig.base.json             # Configuración base de TypeScript y Alias (@arcani/*)
 └── vitest.workspace.ts            # Configuración de Vitest para tests de alta velocidad
-
+```
 
 ##  ESTRUCTURA GENERAL
-
+```bash
 arcani/
 ├── apps/                          # --- APLICACIONES (Consumidores) ---
 │   ├── admin-dashboard/           # Angular 21: El Laboratorio de Anarquía              
@@ -71,11 +71,11 @@ arcani/
 ├── firebase-service-account.json  # Credenciales de administración para Firebase SDK
 ├── nx.json                        # Grafo de dependencias del proyecto
 └── package.json                   # Angular 21, NestJS, PrimeNG, Tailwind 4
-
+```
 
 # API GATAWAY
 
-## ESTRUCTURA GENERAL 
+## ESTRUCTURA GENERAL DE API GATAWAY
 
 📂 Estructura de apps/api-gateway
 ```bash
@@ -114,8 +114,9 @@ apps/api-gateway/
 ```
 
 
-# API GATAWAY DETALLADO
+# ESTRUCTURA DETALLADA DE API GATAWAY
 📂 Estructura de apps/api-gateway
+```bash
 ├── src/
 │   ├── app/
 │   │   ├── common/                               # --- CAPA TRANSVERSAL (BLINDAJE Y PROTOCOLOS) ---
@@ -240,8 +241,7 @@ apps/api-gateway/
 ├── tsconfig.spec.json                    # Reglas TS específicas para los archivos .spec
 └── webpack.config.cjs                    # Personalización del empaquetado (Bundle) de Nest
 
-
-
+```
 
 
 # data-access/db-entities
