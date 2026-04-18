@@ -1,5 +1,5 @@
 
-# ====================================================
+====================================================
 
 ## Paso 1: Creación del Workspace (Cerebro del Proyecto) (MONOREPO VACIO)
 Ejecuta este comando en tu terminal. Este comando creará la "caja" donde vivirán todas tus piezas:
