@@ -1,14 +1,48 @@
+# ESTRUCTURA RAIZ MONOREPO.
 
-# ESTRUCTURA GENERAL
+
+## ESTRUCTURA RAIZ 
+
+arcani/
+├── .angular/                      # Cache de compilación de Angular (Auto-generado)
+├── .nx/                           # Cache y scripts internos del motor de Nx
+├── .vscode/                       # Configuración compartida de VS Code (Extensiones, Debug)
+├── apps/                          # --- APLICACIONES (Consumidores) ---
+├── dist/                          # Artefactos finales listos para producción
+├── dist-temp/                     # Directorio temporal para compilaciones intermedias
+├── docs/                          # Documentación del Proyecto (Arquitectura, Roadmap)
+├── libs/                          # --- LIBRERÍAS (El ADN Reutilizable) ---
+├── node_modules/                  # Dependencias externas instaladas vía NPM
+├── tmp/                           # Archivos temporales de ejecución
+│
+├── .dockerignore                  # Exclusiones para optimizar el contexto de Docker
+├── .editorconfig                  # Estándares de formato de código entre editores
+├── .env                           # Variables de entorno locales (Secretos, API Keys)
+├── .gitignore                     # Archivos y carpetas excluidos del control de versiones
+├── .npmrc                         # Configuración personalizada de NPM (Registros, Scopes)
+├── .prettierignore                # Archivos omitidos por el formateador Prettier
+├── .prettierrc                    # Reglas de estilo de código (Punto y coma, comillas)
+├── docker-compose.yml             # Orquestación de contenedores (MySQL, Firebase Emulator)
+├── eslint.config.mjs              # Reglas de linting modernas (ESLint Flat Config)
+├── firebase-service-account.json  # Credenciales de administración para Firebase SDK
+├── jest.config.ts                 # Configuración global de Testing unitario (Capa Lógica)
+├── jest.preset.js                 # Ajustes preestablecidos de Jest para Nx
+├── nx.json                        # Grafo de dependencias y políticas de visibilidad de Nx
+├── package-lock.json              # Árbol exacto de dependencias instaladas
+├── package.json                   # Manifiesto: Angular 21, NestJS, PrimeNG, Tailwind 4
+├── README.md                      # Manual principal y descripción del ecosistema ARCANI
+├── tsconfig.base.json             # Configuración base de TypeScript y Alias (@arcani/*)
+└── vitest.workspace.ts            # Configuración de Vitest para tests de alta velocidad
 
 
+##  ESTRUCTURA GENERAL
 
 arcani/
 ├── apps/                          # --- APLICACIONES (Consumidores) ---
-│   ├── client-web/                # Angular 21: Tienda Online (Inmersión total)
-│   ├── client-mobile/             # Angular + Ionic/Capacitor: Experiencia portable
-│   ├── admin-dashboard/           # Angular 21: El Laboratorio de Anarquía
-│   └── api-gateway/               # NestJS: El Oráculo (Única entrada a MySQL/Firebase)
+│   ├── admin-dashboard/           # Angular 21: El Laboratorio de Anarquía              
+│   ├── api-gateway/               # NestJS: El Oráculo (Única entrada a MySQL/Firebase)
+│   ├── client-web/                # Angular 21: Tienda Online (Inmersión total)           
+│   └── client-mobile/             # Angular + Ionic/Capacitor: Experiencia portable      Estado(Pendiente)
 │
 ├── libs/                          # --- LIBRERÍAS (El ADN Reutilizable) ---
 │   ├── shared/                    # Capa Transversal
@@ -26,161 +60,185 @@ arcani/
 │       ├── subscribers/           # TRIGGERS DE NESTJS (Lógica de negocio: Penumbra, Veto)
 │       └── migrations/            # TRIGGERS DE SQL (Auditoría e Integridad en MySQL)
 │
+├── Docs/                          # Documentacion del Protecto.
+│
 ├── tools/                         # Scripts de generación y automatización de Nx
-├── tailwind.config.js             # Configuración de variables HSL dinámicas
+│
+├── .dockerignore                  # Exclusiones para optimizar el contexto de Docker
+├── .env                           # Variables de entorno locales (Secretos, API Keys)
+├── .gitignore                     # Archivos y carpetas excluidos del control de versiones
+├── docker-compose.yml             # Orquestación de contenedores (MySQL, Firebase Emulator)
+├── firebase-service-account.json  # Credenciales de administración para Firebase SDK
 ├── nx.json                        # Grafo de dependencias del proyecto
 └── package.json                   # Angular 21, NestJS, PrimeNG, Tailwind 4
 
 
-
-
 # API GATAWAY
-📂 Estructura de apps/api-gateway/src/app/
 
+## ESTRUCTURA GENERAL 
 
-
-├── common/                             # --- CAPA TRANSVERSAL (BLINDAJE) ---
-│   ├── decorators/
-│   │   ├── get-user.decorator.ts       # Extrae el UID de Firebase del Request
-│   │   ├── public.decorator.ts         # Bypass para rutas sin Auth (Catálogo)
-│   │   └── roles.decorator.ts          # Define niveles (STRATEGIC, TACTICAL, OPERATIVE)
-│   ├── filters/
-│   │   └── arcani-exception.filter.ts  # Transforma errores en "Fallas de Portal"
-│   ├── guards/
-│   │   ├── firebase-auth.guard.ts      # Valida JWT de Firebase (libs/shared/auth)
-│   │   └── roles.guard.ts              # Control de acceso por jerarquía RBAC
-│   ├── interceptors/
-│   │   ├── reactive-theme.interceptor.ts # Inyecta Aura/Destello (90/7/3) en respuestas
-│   │   ├── logging.interceptor.ts      # Monitorea el "Pulso del Portal" (Performance)
-│   │   └── uuid.interceptor.ts         # Transforma BINARY(16) <-> UUID String
-│   ├── pipes/
-│   │   ├── hsl-validator.pipe.ts       # Valida formato H S% L% para colores
-│   │   └── trim-data.pipe.ts           # Limpia strings y valida DTOs
-│   └── interfaces/
-│       └── request-with-user.interface.ts # Contrato extendido de Express + User
+📂 Estructura de apps/api-gateway
+```bash
+apps/api-gateway/
+├── src/
+│   ├── app/
+│   │   ├── common/                               # --- CAPA TRANSVERSAL (BLINDAJE) ---
+│   │   │   ├── decorators/                       # @GetUser (UID), @Public (Bypass), @Roles (RBAC)
+│   │   │   ├── filters/                          # arcani-exception.filter.ts (Estandarización de errores)
+│   │   │   ├── guards/                           # firebase-auth.guard.ts y roles.guard.ts (Porteros)
+│   │   │   ├── interceptors/                     # reactive-theme (HSL), logging (Pulso) y uuid (Binary16)
+│   │   │   ├── pipes/                            # hsl-validator (Sintonía) y trim-data (Limpieza)
+│   │   │   └── interfaces/                       # request-with-user.interface.ts (Contrato de Request)
+│   │   │
+│   │   ├── modules/                              # --- DOMINIOS DE NEGOCIO ---
+│   │   │   ├── core-engine/                      # ADN: Firebase Wrapper, DB Config y Seeds (Maestros)
+│   │   │   ├── theming/                          # CORAZÓN: Sintonía Reactiva (Regla 90/7/3)
+│   │   │   ├── operations/                       # GOBERNANZA: Stock PEPS, Veto y Logística
+│   │   │   ├── store/                            # BAZAR: Slugs, Sales (Checkout) y Studio (Merch)
+│   │   │   └── users/                            # EXPLORADOR: Perfil y Carga Lumínica
+│   │   │
+│   │   ├── app.module.ts                         # EL GRAN CONECTOR (Root Module)
+│   │   ├── app.controller.ts                     # PUNTO DE ESCUCHA (Health Check)
+│   │   └── app.service.ts                        # SERVICIO MAESTRO (Estado del Sistema)
+│   │
+│   ├── assets/                                   # RECURSOS ESTÁTICOS (Templates, PDFs, Logos)
+│   ├── data-source.ts                            # EL ORÁCULO DE DATOS (Configuración TypeORM/MySQL)
+│   └── main.ts                                   # EL DESPERTAR (Prefijo /api y Swagger UI)
 │
-├── modules/                            # --- DOMINIOS DE NEGOCIO ---
-│   │
-│   ├── core-engine/                    # --- ADN Y SISTEMA ---
-│   │   ├── auth/                       # Wrapper de Firebase (libs/shared/auth)
-│   │   │   ├── auth.controller.ts
-│   │   │   ├── auth.service.ts
-│   │   │   └── auth.module.ts
-│   │   └── theming/                    # CORAZÓN REACTIVO (Regla 90/7/3)
-│   │       ├── controllers/
-│   │       │   └── theming.controller.ts # Sintonía de nichos y Bazar
-│   │       ├── services/
-│   │       │   ├── theming.service.ts    # Prioridad: Campaña > Inventario > Origen
-│   │       │   └── inventory.service.ts  # Cálculo de SKUs para "Penumbra"
-│   │       └── theming.module.ts
-│   │
-│   ├── store/                          # --- EXPERIENCIA DEL EXPLORADOR ---
-│   │   ├── products/                   # Rutas de la tienda y "Bazar de los Mundos"
-│   │   │   ├── controllers/
-│   │   │   │   └── products.controller.ts # Búsqueda por Slugs y Vitrinas
-│   │   │   ├── services/
-│   │   │   │   └── products.service.ts    # Orquestación de Galería y Datos Maestros
-│   │   │   └── products.module.ts
-│   │   ├── sales/                      # Gestión Transaccional
-│   │   │   ├── controllers/
-│   │   │   │   └── sales.controller.ts    # Carrito, Checkout y Órdenes
-│   │   │   ├── services/
-│   │   │   │   └── sales.service.ts       # Reserva de stock y validación comercial
-│   │   │   └── sales.module.ts
-│   │   └── studio/                     # Personalización y Co-creación
-│   │       ├── controllers/
-│   │       │   └── studio.controller.ts   # Pedidos de Sastrería y Merch
-│   │       ├── services/
-│   │       │   └── studio.service.ts      # Pagos adelantados y gestión de diseños
-│   │       └── studio.module.ts
-│   │
-│   ├── operations/                     # --- GOBERNANZA LOGÍSTICA ---
-│   │   ├── inventory/                  # Gestión de Stock y PEPS
-│   │   │   ├── controllers/
-│   │   │   │   └── inventory.controller.ts # Protocolo de Veto del Selector
-│   │   │   ├── services/
-│   │   │   │   ├── peps.service.ts         # Salida por lotes más antiguos
-│   │   │   │   └── veto.service.ts         # Validación técnica de calidad
-│   │   │   └── inventory.module.ts
-│   │   └── logistics/                  # Abastecimiento y Traslados
-│   │       ├── controllers/
-│   │       │   └── logistics.controller.ts # Guías de Remisión y Órdenes de Compra
-│   │       ├── services/
-│   │       │   └── logistics.service.ts    # Proveedores y movimientos entre nodos
-│   │       └── logistics.module.ts
-│   │
-│   └── users/                          # --- GESTIÓN DEL EXPLORADOR ---
-│       ├── controllers/
-│       │   └── users.controller.ts      # Perfil, preferencias de carga lumínica
-│       ├── services/
-│       │   └── users.service.ts         # CRUD vinculado a libs/data-access
-│       └── users.module.ts
-│
-├── app.module.ts                       # Punto de unión de todos los módulos
-└── main.ts                             # Configuración global y Swagger
+├── Dockerfile                                    # Receta de empaquetado para Producción
+├── project.json                                  # Manifiesto de tareas de Nx (Build, Serve, Test)
+├── eslint.config.mjs                             # Reglas de estilo (Censor de Código)
+├── jest.config.cts                               # Configuración de Pruebas (Sala de Pruebas)
+└── tsconfig.app.json                             # Reglas de compilación de la Aplicación
+
+```
 
 
-
-# API GATAWAY resumen 2.0
-Estructura de apps/api-gateway
-
-
-├── common/                             # --- CAPA TRANSVERSAL (BLINDAJE Y PROTOCOLOS) ---
-│   ├── decorators/
-│   │   ├── get-user.decorator.ts       # Extrae el UID de Firebase del Request (Identidad)
-│   │   ├── public.decorator.ts         # Bypass para rutas de acceso libre (Catálogo/Bazar)
-│   │   └── roles.decorator.ts          # Define jerarquías (STRATEGIC, TACTICAL, OPERATIVE)
-│   ├── filters/
-│   │   └── arcani-exception.filter.ts  # Estandariza errores como "Fallas de Portal"
-│   ├── guards/
-│   │   ├── firebase-auth.guard.ts      # Valida tokens JWT de Firebase (Auth Guard)
-│   │   └── roles.guard.ts              # Control de acceso basado en RBAC (Roles)
-│   ├── interceptors/
-│   │   ├── reactive-theme.interceptor.ts # Inyecta paletas HSL (90/7/3) dinámicamente
-│   │   ├── logging.interceptor.ts      # Monitorea latencia y salud del "Pulso del Portal"
-│   │   └── uuid.interceptor.ts         # Traduce BINARY(16) <-> UUID String (Blindaje)
-│   ├── pipes/
-│   │   ├── hsl-validator.pipe.ts       # Valida sintaxis HSL para el Motor de Sintonía
-│   │   └── trim-data.pipe.ts           # Limpieza de strings y validación estricta de DTOs
-│   └── interfaces/
-│       └── request-with-user.interface.ts # Extensión de Express para persistencia de usuario
-│
-├── modules/                            # --- DOMINIOS DE NEGOCIO (EL MULTIVERSO) ---
+# API GATAWAY DETALLADO
+📂 Estructura de apps/api-gateway
+├── src/
+│   ├── app/
+│   │   ├── common/                               # --- CAPA TRANSVERSAL (BLINDAJE Y PROTOCOLOS) ---
+│   │   │   ├── decorators/
+│   │   │   │   ├── get-user.decorator.ts         # Extrae el UID de Firebase del Request (Identidad)
+│   │   │   │   ├── public.decorator.ts           # Bypass para rutas de acceso libre (Catálogo/Bazar)
+│   │   │   │   └── roles.decorator.ts            # Define jerarquías (STRATEGIC, TACTICAL, OPERATIVE)
+│   │   │   ├── filters/
+│   │   │   │   └── arcani-exception.filter.ts    # Estandariza errores como "Fallas de Portal"
+│   │   │   ├── guards/
+│   │   │   │   ├── firebase-auth.guard.ts        # Valida tokens JWT de Firebase (Auth Guard)
+│   │   │   │   └── roles.guard.ts                # Control de acceso basado en RBAC (Roles)
+│   │   │   ├── interceptors/
+│   │   │   │   ├── reactive-theme.interceptor.ts # Inyecta paletas HSL (90/7/3) dinámicamente
+│   │   │   │   ├── logging.interceptor.ts        # Monitorea latencia y salud del "Pulso del Portal"
+│   │   │   │   └── uuid.interceptor.ts           # Traduce BINARY(16) <-> UUID String (Blindaje)
+│   │   │   ├── pipes/
+│   │   │   │   ├── hsl-validator.pipe.ts         # Valida sintaxis HSL para el Motor de Sintonía
+│   │   │   │   └── trim-data.pipe.ts             # Limpieza de strings y validación estricta de DTOs
+│   │   │   └── interfaces/
+│   │   │       └── request-with-user.interface.ts # Extensión de Express para persistencia de usuario
+│   │   │
+│   │   ├── modules/                              # --- DOMINIOS DE NEGOCIO ---
+│   │   │   │
+│   │   │   ├── core-engine/                      # --- ADN Y SISTEMA ---
+│   │   │   │   ├── auth/                         # Wrapper de Firebase (libs/shared/auth)
+│   │   │   │   │   ├── auth.controller.ts
+│   │   │   │   │   ├── auth.service.ts
+│   │   │   │   │   └── auth.module.ts
+│   │   │   │   ├── database/                     # INFRAESTRUCTURA Y PERSISTENCIA
+│   │   │   │   │   └── seeds/                    # Sembrado de ADN (Datos maestros iniciales)
+│   │   │   │   │       │   ├── event.seed.ts     # Inyección de Eventos (Anarquía Temporal)
+│   │   │   │   │       │   ├── niche.seed.ts     # Inyección de los 16 Nichos Base
+│   │   │   │   │       │   └── database-seed.module.ts # Orquestador de inicialización automática
+│   │   │   │   │       └── database.module.ts    # Configuración de TypeORM y conexión a Docker
+│   │   │   │   └── theming/                      # CORAZÓN REACTIVO (Regla 90/7/3)
+│   │   │   │       ├── controllers/
+│   │   │   │       │   └── theming.controller.ts # Sintonía de nichos y Bazar
+│   │   │   │       ├── services/
+│   │   │   │       │   ├── theming.service.ts    # Prioridad: Campaña > Inventario > Origen
+│   │   │   │       │   └── inventory.service.ts  # Cálculo de SKUs para "Penumbra"
+│   │   │   │       └── theming.module.ts
+│   │   │   │
+│   │   │   ├── operations/                       # --- GOBERNANZA LOGÍSTICA ---
+│   │   │   │   ├── inventory/                    # Gestión de Stock y PEPS
+│   │   │   │   │   ├── controllers/
+│   │   │   │   │   │   └── inventory.controller.ts # Protocolo de Veto del Selector
+│   │   │   │   │   ├── services/
+│   │   │   │   │   │   ├── peps.service.ts         # Salida por lotes más antiguos
+│   │   │   │   │   │   └── veto.service.ts         # Validación técnica de calidad
+│   │   │   │   │   └── inventory.module.ts
+│   │   │   │   └── logistics/                  # Abastecimiento y Traslados
+│   │   │   │       ├── controllers/
+│   │   │   │       │   └── logistics.controller.ts # Guías de Remisión y Órdenes de Compra
+│   │   │   │       ├── services/
+│   │   │   │       │   └── logistics.service.ts    # Proveedores y movimientos entre nodos
+│   │   │   │       └── logistics.module.ts
+│   │   │   │
+│   │   │   ├── store/                          # --- EXPERIENCIA DEL EXPLORADOR ---
+│   │   │   │   ├── products/                   # Rutas de la tienda y "Bazar de los Mundos"
+│   │   │   │   │   ├── controllers/
+│   │   │   │   │   │   └── products.controller.ts # Búsqueda por Slugs y Vitrinas
+│   │   │   │   │   ├── services/
+│   │   │   │   │   │   └── products.service.ts    # Orquestación de Galería y Datos Maestros
+│   │   │   │   │   └── products.module.ts
+│   │   │   │   ├── sales/                      # Gestión Transaccional
+│   │   │   │   │   ├── controllers/
+│   │   │   │   │   │   └── sales.controller.ts    # Carrito, Checkout y Órdenes
+│   │   │   │   │   ├── services/
+│   │   │   │   │   │   └── sales.service.ts       # Reserva de stock y validación comercial
+│   │   │   │   │   └── sales.module.ts
+│   │   │   │   └── studio/                     # Personalización y Co-creación
+│   │   │   │       ├── controllers/
+│   │   │   │       │   └── studio.controller.ts   # Pedidos de Sastrería y Merch
+│   │   │   │       ├── services/
+│   │   │   │       │   └── studio.service.ts      # Pagos adelantados y gestión de diseños
+│   │   │   │       └── studio.module.ts
+│   │   │   │
+│   │   │   └── users/                          # --- GESTIÓN DEL EXPLORADOR ---
+│   │   │       ├── controllers/
+│   │   │       │   └── users.controller.ts      # Perfil, preferencias de carga lumínica
+│   │   │       ├── services/
+│   │   │       │   └── users.service.ts         # CRUD vinculado a libs/data-access
+│   │   │       └── users.module.ts
+│   │   │
+│   │   ├── app.controller.spec.ts                # TEST DEL ORÁCULO
+│   │   │                                   # - Pruebas unitarias para validar el punto de entrada
+│   │   │
+│   │   ├── app.controller.ts                     # PUNTO DE ESCUCHA BASE
+│   │   │                                         # - Endpoint de salud (Health Check)
+│   │   │                                         # - Verifica que el Portal esté activo y responda
+│   │   │
+│   │   ├── app.module.ts                         # EL GRAN CONECTOR (ROOT MODULE)
+│   │   │                                         # - Importa todos los dominios (modules)
+│   │   │                                         # - Configura variables de entorno y base de datos
+│   │   │                                         # - Es el punto de unión de todo el sistema
+│   │   │
+│   │   ├── app.service.spec.ts                   # TEST DE LÓGICA BASE
+│   │   │                                         # - Valida que los servicios raíz funcionen correctamente
+│   │   │
+│   │   └── app.service.ts                        # SERVICIO MAESTRO
+│   │                                             # - Lógica fundamental de arranque
+│   │                                             # - Devuelve el estado de conexión del sistema                                    
+│   │                                 
 │   │
-│   ├── core-engine/                    # --- ADN Y SISTEMA (EL MOTOR CENTRAL) ---
-│   │   ├── auth/                       # Gestión de Sesión y Perfiles
-│   │   ├── theming/                    # Motor de Sintonía (Lógica de Colores y Energías)
-│   │   └── database/                   # INFRAESTRUCTURA Y PERSISTENCIA
-│   │       ├── seeds/                  # Sembrado de ADN (Datos maestros iniciales)
-│   │       │   ├── event.seed.ts       # Inyección de Eventos (Anarquía Temporal)
-│   │       │   ├── niche.seed.ts       # Inyección de los 16 Nichos Base
-│   │       │   └── database-seed.module.ts # Orquestador de inicialización automática
-│   │       └── database.module.ts      # Configuración de TypeORM y conexión a Docker
+│   ├── assets/                           # RECURSOS ESTÁTICOS (Templates, PDFs, Logos)
+│   │   └── .gitkeep                      # Mantiene la carpeta en Git si está vacía
 │   │
-│   ├── store/                          # --- EXPERIENCIA DEL EXPLORADOR (FRONT-END OPS) ---
-│   │   ├── products/                   # Bazar de los Mundos (Búsqueda y Visualización)
-│   │   ├── sales/                      # Motor Transaccional (Carrito y Checkout)
-│   │   └── studio/                     # ARCANI Studio (Personalización y Co-creación)
+│   ├── data-source.ts                      # EL ORÁCULO DE DATOS (Configuración TypeORM)
+│   │                                       # - Puente entre Entities y MySQL (Puerto 3306)
+│   │                                       # - Control de Migraciones y SnakeNamingStrategy
 │   │
-│   ├── operations/                     # --- GOBERNANZA LOGÍSTICA (BACK-OFFICE) ---
-│   │   ├── inventory/                  # Gestión de Stock, Lotes (PEPS) y Veto técnico
-│   │   └── logistics/                  # Nodos de distribución y Abastecimiento
-│   │
-│   └── users/                          # --- IDENTIDAD DEL EXPLORADOR ---
-│       ├── controllers/                # Gestión de preferencias y carga lumínica
-│       └── services/                   # CRUD de perfiles vinculado a db-entities
-│
-├── data-source.ts                      # EL ORÁCULO DE DATOS (Configuración TypeORM)
-│                                       # - Puente entre Entities y MySQL (Puerto 3306)
-│                                       # - Control de Migraciones y SnakeNamingStrategy
-│
-├── app.module.ts                       # EL NODO MAESTRO (Unión de Módulos)
-│                                       # - Carga de configuraciones y DatabaseSeedModule
-│
-└── main.ts                             # EL PORTAL DE ENTRADA (Bootstrap)
-                                        # - Prefijo global '/api' y Swagger UI
-
-
+│   ├── app.module.ts                       # Punto de unión de todos los módulos
+│   └── main.ts                             # Configuración Prefijo global '/api' y Swagger UI
+│   
+├── Dockerfile                            # Receta para el contenedor del API (Producción)
+├── eslint.config.mjs                     # Reglas de estilo específicas para esta App
+├── jest.config.cts                       # Configuración de pruebas unitarias/integración
+├── project.json                          # Configuración de Nx (Build, Serve, Lint, Test)
+├── tsconfig.app.json                     # Reglas TS para la ejecución de la aplicación
+├── tsconfig.json                         # Configuración TS local del proyecto
+├── tsconfig.spec.json                    # Reglas TS específicas para los archivos .spec
+└── webpack.config.cjs                    # Personalización del empaquetado (Bundle) de Nest
 
 
 
