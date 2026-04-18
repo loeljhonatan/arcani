@@ -24,25 +24,25 @@ npx create-nx-workspace@latest arcani --preset=apps
 ***
 _____
 ____
-#### MENSAJE
+> #### MENSAJE
 NX Let's create a new workspace [https://nx.dev/getting-started/intro]? Speed up your CI with Nx Cloud? ... YesSkip for nowNo, don't ask again
 
 NX ¿Creamos un nuevo espacio de trabajo [https://nx.dev/getting-started/intro]? ¿Acelerar tu CI con Nx Cloud? ... SíOmitir por ahoraNo, no volver a preguntar
 
-#### RESPUESTA --> Selecciona "Skip for now" (Omitir por ahora).
+> #### RESPUESTA --> Selecciona "Skip for now" (Omitir por ahora).
 ¿Por qué?
 Como estamos en la fase inicial de desarrollo de ARCANI, no necesitamos configurar la nube todavía. Queremos centrar toda la potencia en estructurar los 16 nichos, el inventariado y la app móvil en tu máquina local. Podrás activar Nx Cloud más adelante con un solo comando si el proyecto crece mucho.
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
-#### Mensaje 
+> #### Mensaje 
 HELP IMPROVE NX BY SHARING YOU USAGE DATA?
 
-#### RESPUESTA --> Selecciona No.
+> #### RESPUESTA --> Selecciona No.
 ¿Por qué?
 Privacidad: Evitas que se envíen datos de telemetría de tu estructura de carpetas o comandos a los servidores de Nx.
 Rendimiento: Aunque el impacto es mínimo, el CLI no perderá tiempo en procesos de envío de datos en segundo plano.
 Enfoque: Queremos un entorno de desarrollo lo más limpio y "privado" posible para el manejo de tu lógica de negocio (los 16 nichos y el inventariado).
-----------------------------------------------------------------------------------------------------
+
 ____________________________________________________________________________________________________
 ____________________________________________________________________________________________________
 
