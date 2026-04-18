@@ -1,7 +1,7 @@
 
-====================================================
---------------------------------------------
-______________________________________
+
+# INSTALACION INICIAL MONOREPO ARCANI
+____________________________________________________________________________________________________
 
 ## Paso 1: Creación del Workspace (Cerebro del Proyecto) (MONOREPO VACIO)
 Ejecuta este comando en tu terminal. Este comando creará la "caja" donde vivirán todas tus piezas:
@@ -9,7 +9,7 @@ En este Caso estamos Asignado el nombre arcani al protecto
 ```bash
 npx create-nx-workspace@latest arcani --preset=apps
 ```
-_____________________________________________________________________________
+----------------------------------------------------------------------------------------------------
 #### MENSAJE
 NX Let's create a new workspace [https://nx.dev/getting-started/intro]? Speed up your CI with Nx Cloud? ... YesSkip for nowNo, don't ask again
 
@@ -18,8 +18,8 @@ NX ¿Creamos un nuevo espacio de trabajo [https://nx.dev/getting-started/intro]?
 #### RESPUESTA --> Selecciona "Skip for now" (Omitir por ahora).
 ¿Por qué?
 Como estamos en la fase inicial de desarrollo de ARCANI, no necesitamos configurar la nube todavía. Queremos centrar toda la potencia en estructurar los 16 nichos, el inventariado y la app móvil en tu máquina local. Podrás activar Nx Cloud más adelante con un solo comando si el proyecto crece mucho.
-_____________________________________________________________________________
-_____________________________________________________________________________
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 #### Mensaje 
 HELP IMPROVE NX BY SHARING YOU USAGE DATA?
 
@@ -28,21 +28,23 @@ HELP IMPROVE NX BY SHARING YOU USAGE DATA?
 Privacidad: Evitas que se envíen datos de telemetría de tu estructura de carpetas o comandos a los servidores de Nx.
 Rendimiento: Aunque el impacto es mínimo, el CLI no perderá tiempo en procesos de envío de datos en segundo plano.
 Enfoque: Queremos un entorno de desarrollo lo más limpio y "privado" posible para el manejo de tu lógica de negocio (los 16 nichos y el inventariado).
-_____________________________________________________________________________
-# ============================================================================
+----------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
 
 ## Paso 2: Nos Posicionamos en el Proyecto
 ```bash
 cd arcani
 ```
-# ======================================================================================================================================
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
 
 ## Paso 3: Instala los plugins de generación de Angular y NestJS
 Nx cambió la estructura de sus paquetes hace un tiempo. El plugin oficial para NestJS ahora se llama simplemente @nx/nest
 ```bash
 npm install --save-dev @nx/angular @nx/nest
 ```
-# ======================================================================================================================================
+____________________________________________________________________________________________________
 
 ## Paso 4: Genera el Backend (El Corazón de ARCANI en NestJS):
 Este manejará la base de datos PostgreSQL, Firebase Auth y la lógica de negocio.
@@ -52,9 +54,8 @@ Este manejará la base de datos de los 16 nichos y el inventario.
 
 npx nx g @nx/nest:app --name=api-gateway --directory=apps/api-gateway --linter=eslint --unitTestRunner=jest
 
-
 ```
-
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
  NX  Generating @nx/nest:application
 
@@ -66,16 +67,15 @@ npx nx g @nx/nest:app --name=api-gateway --directory=apps/api-gateway --linter=e
 Es completamente normal. Cuando generas una aplicación con Nx, por defecto te crea dos proyectos:
 api-gateway: Es el código real de tu servidor (NestJS), donde programarás la lógica de los nichos, productos y usuarios.
 api-gateway-e2e: Significa End-to-End (de extremo a extremo). Es una carpeta separada para realizar pruebas automatizadas que simulan el comportamiento de un usuario real o un cliente consumiendo tu API de principio a fin.
-
-# ======================================================================================================================================
-
+----------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________
 ## Paso 5: La Web del Cliente (Angular) - La Tienda Reactiva.
 Aquí usaremos Signals, Tailwind y PrimeNG.
 
 ```bash
 npx nx g @nx/angular:app apps/client-web --routing --style=css --standalone --inlineStyle --inlineTemplate=false
 ```
-
+----------------------------------------------------------------------------------------------------
 #### MENSAJE
 
  NX   Install Nx's official editor extension to:
@@ -92,7 +92,8 @@ Para un proyecto con múltiples aplicaciones (Web, API, Admin, App) y librerías
 Generadores Visuales: En lugar de recordar comandos largos de terminal (como el de angular:app), tendrás una interfaz en VS Code donde solo llenas formularios para crear componentes, servicios o módulos.
 Visualización del Grafo: Podrás ver cómo tu API se conecta con tus Librerías y cómo estas alimentan a la Web. Es vital para no romper el "ADN" del proyecto.
 Ejecución de Tareas: Te permite correr serve, build o test con un solo clic desde la barra lateral.
-
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 #### MENSAJE
 
@@ -114,7 +115,8 @@ none
 Velocidad Extrema: Es mucho más rápido que Jest, lo que agradecerás cuando tu monorepo crezca con las 3 aplicaciones y múltiples librerías.
 Integración con Vite: Angular 21 utiliza internamente Vite para el desarrollo, y Vitest comparte esa misma configuración. Esto hace que las pruebas sean idénticas al entorno real.
 Modernidad: Es el estándar actual para proyectos de alto rendimiento.
-
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
 √ Install Nx Console? (you can uninstall anytime) (Y/n) · true
 
@@ -134,7 +136,8 @@ none
 Velocidad y Modernidad: Es más rápido y ligero que Cypress, ideal para el ecosistema de Angular 21.
 Pruebas Móviles: Como planeas hacer una App, Playwright permite emular dispositivos móviles (iOS/Android) de forma nativa desde el navegador, lo cual es vital para probar el "ADN Reactivo" en pantallas pequeñas.
 Traza de Errores: Tiene herramientas visuales increíbles para ver exactamente qué falló en tu flujo de compra o en ARCANI Studio.
-
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
  NX   Successfully installed Nx Console!
 
@@ -154,7 +157,8 @@ webpack
 Velocidad de Rayo: Es el motor por defecto en Angular 21. Reduce el tiempo de compilación de minutos a segundos, lo que acelera tu flujo de trabajo enormemente [1].
 Soporte Nativo para Signals: Está optimizado para las nuevas funciones reactivas de Angular, asegurando que el cambio de colores en los 16 nichos sea instantáneo [2].
 Modernidad: webpack está quedando atrás para aplicaciones nuevas; esbuild es el estándar para el alto rendimiento que buscas en tu "ADN Geek" [1].
-
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
 √ Install Nx Console? (you can uninstall anytime) (Y/n) · true
 
@@ -175,8 +179,8 @@ Enfoque en la App: Como planeas hacer una App móvil, necesitas una SPA (Single 
 Velocidad de Desarrollo: Sin SSR, tu ciclo de "guardar y ver cambios" será instantáneo con esbuild.
 
 Nota: Si en el futuro necesitas SEO extremo para los productos de colección, Angular permite añadir SSR más adelante con un solo comando.
-
-# ======================================================================================================================================
+----------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________
 
 ## Paso 6: El Panel de Inventariado (Angular) - Control Total
 Separamos el Admin de la tienda por seguridad y para que cargue más rápido para el cliente.
@@ -185,7 +189,7 @@ Separamos el Admin de la tienda por seguridad y para que cargue más rápido par
 npx nx g @nx/angular:app apps/admin-dashboard --routing --style=css --standalone
 
 ```
-
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
  NX  Generating @nx/angular:application
 
@@ -200,6 +204,8 @@ webpack
 Consistencia: Al usar el mismo motor que en la web-arcani, garantizas que los componentes de PrimeNG y los estilos de Tailwind se comporten exactamente igual en ambas aplicaciones.
 Rendimiento en el Panel: El dashboard de inventariado suele manejar tablas grandes y muchos datos. esbuild optimiza el empaquetado para que la carga inicial sea ultrarrápida.
 Preparado para el Futuro: Es el estándar de Angular 21 y el que mejor soporte tiene para Signals, lo que te permitirá ver cambios de stock o estados de "ARCANI Studio" en tiempo real sin recargas pesadas.
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 #### MENSAJE 
  NX  Generating @nx/angular:application
@@ -214,19 +220,9 @@ Selecciona N (No). Para un panel de administración (Admin Dashboard), el SSR no
 Ahora que Nx ha terminado de generar las tres piezas fundamentales, tu monorepo ARCANI se ve así en VS Code:
 apps/api-gateway: El "Cerebro" (NestJS).
 apps/web-arcani: La "Tienda del Fan" (Angular 21 + Signals).
+----------------------------------------------------------------------------------------------------
 
-# ======================================================================================================================================
-
-## ¡El Workspace está listo! 🚀
-Ahora que Nx terminó de generar la estructura, vamos a instalar las herramientas visuales (Tailwind y PrimeNG) para empezar con la Tematización Reactiva.
-Ejecuta estos 3 comandos en orden:
-
-
-### Siguiente Movimiento Estratégico:
-Para avanzar con la tematización reactiva, necesito que instalemos Tailwind CSS y PrimeNG en la aplicación client-web.
-¿Quieres que te dé los comandos para integrar Tailwind y configurar las variables CSS --arcani-aura y --arcani-destello en el archivo de configuración global? Esto hará que tu sistema empiece a ser "Reactivo" visualmente.
-
-# ======================================================================================================================================
+____________________________________________________________________________________________________
 
 ## Paso 7: Instalar Tailwind V4.
 
@@ -279,7 +275,7 @@ export default {
   },
 };
 ```
-# ======================================================================================================================================
+____________________________________________________________________________________________________
 
 ## Paso 8: Instalar PrimeNG
 
@@ -295,12 +291,12 @@ npm install @primeuix/themes
 npm install @primeng/themes --save
 
 
-
 ```
+____________________________________________________________________________________________________
 
-# ======================================================================================================================================
 ## Paso 9: creamos core-reactive-engine
-#### LIBRTERIA PARA LA REACVIVACION
+
+#### LIBRERIA PARA LA REACVIVACION
 ¿Por qué crear libs/shared/reactive-engine ahora?
 Sintonía Total: Si mañana decides que el "ADN de Anime" ya no es naranja sino rojo, lo cambias en la librería y automáticamente se actualiza en la Web, en el Panel Admin y en la App Móvil.
 Signals Compartidos: El ThemeService que usa Angular 21 Signals vivirá aquí. Las tres aplicaciones lo importarán para reaccionar al cambio de nicho.
@@ -312,9 +308,9 @@ npx nx g @nx/angular:lib --name=core-reactive-engine --directory=libs/core/react
 
 
 ```
-# ======================================================================================================================================
+____________________________________________________________________________________________________
 
-## Paso 10: IBRERIA PARA LOS MODELOS  (INTERFACES, ENTIDADES)(DATA MODELS)
+## Paso 10: LIBRERIA PARA LOS MODELOS  (INTERFACES, ENTIDADES)(DATA MODELS)
 Este es el paso más importante. Crearemos una librería donde definiremos qué es un "Nicho", un "Producto" y un "Usuario". Esto permitirá que NestJS y Angular usen exactamente las mismas interfaces.
 
 ```bash
@@ -323,6 +319,7 @@ npx nx g @nx/js:lib --name=shared-domain --directory=libs/shared/domain --projec
 
 
 ```
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
  NX  Generating @nx/js:library
 
@@ -337,7 +334,8 @@ Código Limpio: Como esta librería (shared-domain) será el "diccionario" que u
 Consistencia en el Monorepo: Nx ya configuró eslint para tus aplicaciones (api-arcani, web-arcani). Al usarlo también en las librerías, aseguras que todo el proyecto se sienta como una sola pieza.
 Detección de Errores en Tiempo Real: Si intentas usar un "Nicho" que no existe o una propiedad mal escrita, ESLint te avisará antes de que intentes compilar.
 
-
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 #### MENSAJE 
  NX  Generating @nx/js:library
 
@@ -352,27 +350,14 @@ none
 Velocidad: Al ser una librería compartida (shared-domain) que importarás en NestJS y Angular, necesitas que las pruebas corran al instante cada vez que cambies una interfaz de los 16 nichos.
 Consistencia: Ya configuramos Vitest para tu aplicación web. Usar el mismo motor en las librerías evita conflictos de configuración en el monorepo y hace que el comando nx test sea uniforme.
 Modernidad: Vitest es nativo de ESM (ECMAScript Modules), lo cual encaja perfecto con Angular 21 y Tailwind 4.
+----------------------------------------------------------------------------------------------------
 
 
-# ======================================================================================================================================
+____________________________________________________________________________________________________
 
+## ¡El Workspace está listo! 🚀
+Ahora que Nx terminó de generar la estructura
 
-
-
-
-## Ejecuta estos 3 comandos en orden:
-
-
-¿Cómo se ve tu estructura ahora?
-Si abres tu editor (VS Code), deberías ver esto:
-apps/api-gateway (NestJS)
-apps/client-web (Angular Tienda)
-apps/admin-dashboard (Angular Inventario)
-libs/shared/domain (Interfaces compartidas)
-
-Siguiente Movimiento Estratégico:
-Para avanzar con la tematización reactiva, necesito que instalemos Tailwind CSS y PrimeNG en la aplicación client-web.
-¿Quieres que te dé los comandos para integrar Tailwind y configurar las variables CSS --arcani-aura y --arcani-destello en el archivo de configuración global? Esto hará que tu sistema empiece a ser "Reactivo" visualmente.
 
 
 
