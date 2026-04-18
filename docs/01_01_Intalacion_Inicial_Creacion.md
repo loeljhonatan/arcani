@@ -12,13 +12,15 @@ npx create-nx-workspace@latest arcani --preset=apps
 ----------------------------------------------------------------------------------------------------
 ***
 ---
-# HOLA
-# FIN
+> # HOLA
+> # FIN
 ----
 
 ***
 # HOLA
 # FIN
+
+[ ] Tarea pendiente y [xAAAAAAA] Tarea completada
 ***
 _____
 ____
