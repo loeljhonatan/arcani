@@ -3,31 +3,30 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { NicheSeedService } from './niche-seed.service';
-import { NicheController } from './niche.controller';
-import { SintonizadorModule } from './sintonizador/sintonizador.module';
 
-import { ThemingModule } from './modules/core-engine/theming/theming.module';
-import { NicheEntity } from '@arcani/data-access-db-entities';
 import { AuthModule } from './modules/core-engine/auth/auth.module';
 import { InventoryModule } from './modules/operations/inventory/inventory.module';
 
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { NicheEntity, NicheIdentityEntity, NicheStockEntity, NicheThemeEntity } from '@arcani/data-access-db-entities';
+import { DatabaseModule } from './modules/core-engine/database/database.module';
+import { ThemingModule } from './modules/core-engine/theming/theming.module';
+import { APP_GUARD } from '@nestjs/core';
+import { ReactiveThemeInterceptor } from './common/interceptors/reactive-theme.interceptor';
 
 @Module({
   imports: [
 
-     // 1. Configuración Global de Variables de Entorno
+    // 1. Configuración Global (Buscando el .env)
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
     }),
 
-
     // 2. Conexión a Base de Datos (Motor de Persistencia)
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule, ThemingModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
@@ -36,30 +35,45 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         username: configService.get<string>('DB_USER'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        autoLoadEntities: true,
+        autoLoadEntities: true,// 👈 Importante: Esto cargará todas las entidades de las libs
         synchronize: false, // Seguridad total: se usan migrations | empre false en producción, usar migrations
-        logging: ['error', 'warn'],
+        namingStrategy: new SnakeNamingStrategy(),// 🛡️ Traductor Universal (Normalización snake_case -> camelCase)
         connectorPackage: 'mysql2', // Optimizado para alto rendimiento
+        logging: ['error', 'warn'],
 
-        // 🛡️ Traductor Universal (Normalización snake_case -> camelCase)
-        namingStrategy: new SnakeNamingStrategy(),
+
+        entities: [
+        NicheEntity,
+        NicheThemeEntity,
+        NicheStockEntity,
+        NicheIdentityEntity
+      ],
+
+
       }),
     }),
 
-    // 3. Registro de Entidades Específicas del App (Si es necesario)
-    TypeOrmModule.forFeature([NicheEntity]),
+       // 3. Módulos de Dominio (Estructura ARCANI)
+    DatabaseModule, // 👈 Aquí dentro vivirán todos tus Seeds (Eventos, Nichos)
+    ThemingModule, //   Usado para tema
+    AuthModule, // Importante: Debe estar importado para que el Guard vea la estrategia
 
 
-    // 4. Módulos de Dominio (El ADN de ARCANI)
-    SintonizadorModule,
-    ThemingModule,
-    AuthModule,
-    InventoryModule,// <-- Habilita el repositorio para el seeder
+    InventoryModule,
 
 
   ],
 
-  controllers: [AppController, NicheController], // <-- Registra el controlador aquí
-  providers: [AppService, NicheSeedService], // <-- Registra el seeder
+  controllers: [AppController],
+  providers: [
+
+    // 2. Registro Global del Interceptor de Sintonía
+    {
+      provide: APP_GUARD, // 🛡️ ACTIVACIÓN GLOBAL: Todas las rutas ahora son PRIVADAS por defecto
+      useClass: ReactiveThemeInterceptor,
+    },
+
+    AppService,
+  ],
 })
 export class AppModule {}

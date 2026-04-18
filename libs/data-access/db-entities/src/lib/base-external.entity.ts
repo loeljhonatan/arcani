@@ -1,7 +1,7 @@
-import { PrimaryGeneratedColumn, Column } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, Generated } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
-import { UUIDBinaryTransformer } from './transformers/uuid-binary.transformer';
-import { ArcaniBaseEntity } from './base.entity';
+import { UUIDBinaryTransformer } from './transformers/uuid-binary.transformer.js';
+import { ArcaniBaseEntity } from './base.entity.js';
 
 export abstract class ArcaniExternalIdEntity extends ArcaniBaseEntity {
 
@@ -15,8 +15,15 @@ export abstract class ArcaniExternalIdEntity extends ArcaniBaseEntity {
     unique: true,
     transformer: new UUIDBinaryTransformer(), // 👈 Conversión automática aquí
   })
-  //@Generated('uuid')
+ // @Generated('uuid')
+ // @Expose()
+ // uuid!: string;
+
+  uuid: string = crypto.randomUUID();
+
   @Expose()
-  uuid!: string;
+  get getUuid(): string {
+    return this.uuid;
+  }
 
 }

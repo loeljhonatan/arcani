@@ -1,43 +1,45 @@
-import { Entity, Column, OneToOne } from 'typeorm';
-import { ArcaniBaseEntity } from '../base.entity'; // La que creamos con el Transformer
-import { ProductInventorySyncEntity } from '../operations/product-inventory-sync.entity';
+import { Entity, Column, OneToOne, Index, OneToMany, type Relation } from 'typeorm';
+import { ArcaniExternalIdEntity } from '../base-external.entity.js';
+import { Exclude, Expose } from 'class-transformer';
+
 
 @Entity('niche') // Nombre de la tabla en singular
-export class NicheEntity extends ArcaniBaseEntity {
-  @Column({ unique: true, length: 50 })
+@Index('idx_niche_lookup', ['slug', 'isActive']) // Reflejamos tu índice de SQL
+export class NicheEntity extends ArcaniExternalIdEntity  {
+
+ @Column({ unique: true, length: 50 })
+  @Expose()
   slug!: string;
 
   @Column({ length: 50 })
+  @Expose()
   name!: string;
 
   @Column({ type: 'text', nullable: true })
-  description!: string;
+  @Expose()
+  description?: string;
 
-  @Column({ length: 255 })
-  cloudinary_id!: string;
+  @Column({ name: 'sort_order', type: 'int', default: 0 })
+  @Expose()
+  sortOrder!: number;
 
-  @Column({ length: 25 })
-  color_primary!: string; // Formato HSL: "210 100% 50%"
+  // --- RELACIONES ESTRATÉGICAS ---
 
-  @Column({ length: 25 })
-  color_accent!: string;
+  @OneToOne('NicheThemeEntity', 'niche', { cascade: true, eager: true }) // 👈 'niche' porque así se llama en el hijo
+  @Expose()
+  theme!: Relation<any>; // Diferimos el tipo para evitar el bucle
 
-  @Column({ length: 25 })
-  color_light!: string;
+  @OneToOne('NicheStockEntity', 'niche', { cascade: true, eager: true })
+  @Expose()
+  stock!: Relation<any>; // Diferimos el tipo para evitar el bucle
 
-  @Column({ length: 25 })
-  color_dark!: string;
+  @OneToOne('NicheIdentityEntity', 'niche', { cascade: true, eager: true })
+  @Expose()
+  identity?: Relation<any>; // Diferimos el tipo para evitar el bucle
 
-  @Column({ default: 25 })
-  bazar_threshold!: number;
+  // Relación Bidireccional (Para lógica de negocio en Service)
+  @OneToMany('NicheEventEntity', 'niche')
+  @Exclude() // Solo disponible mediante Joins explícitos en el Service
+  events!: any[];
 
-  @Column({ type: 'json', nullable: true })
-  custom_config: any;
-
-  @Column({ default: 0 })
-  sort_order!: number;
-
-  // Relación 1:1 con la tabla de sincronización para el Bazar
-  @OneToOne(() => ProductInventorySyncEntity, (sync) => sync.niche)
-  inventorySync!: ProductInventorySyncEntity;
 }

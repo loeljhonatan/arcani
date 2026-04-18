@@ -5,6 +5,25 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+
+    "migration-run": {
+    "executor": "nx:run-commands",
+    "options": {
+         "command": "powershell -Command \"$env:TS_NODE_PROJECT='tsconfig.base.json'; node --env-file=.env ./node_modules/typeorm/cli-ts-node-esm.js migration:run -d ./apps/api-gateway/src/data-source.ts\""
+      }
+    },
+    "migration-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "powershell -Command \"$env:TS_NODE_PROJECT='tsconfig.base.json'; node --env-file=.env ./node_modules/typeorm/cli-ts-node-esm.js migration:generate libs/data-access/db-entities/src/lib/migrations/{args.name} -d ./apps/api-gateway/src/data-source.ts\""
+      }
+    },
+    "migration-create": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "powershell -Command \"$env:TS_NODE_PROJECT='tsconfig.base.json'; node --env-file=.env ./node_modules/typeorm/cli-ts-node-esm.js migration:create libs/data-access/db-entities/src/lib/migrations/{args.name}\""
+      }
+    },
     "build": {
       "executor": "nx:run-commands",
       "options": {

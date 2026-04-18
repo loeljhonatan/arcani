@@ -10,7 +10,6 @@ export abstract class ArcaniBaseEntity {
   isActive!: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
- // @Expose({ name: 'createdAt' })
   @Expose()
   createdAt!: Date;
 

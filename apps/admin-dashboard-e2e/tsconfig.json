@@ -4,7 +4,10 @@
     "allowJs": true,
     "outDir": "../../dist/out-tsc",
     "sourceMap": false,
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "bundler", // O "node" si usas una versión anterior
+    "types": ["node", "@playwright/test"],
+    "esModuleInterop": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -14,7 +17,7 @@
   "include": [
     "**/*.ts",
     "**/*.js",
-    "playwright.config.ts",
+    "playwright.config.mts",
     "src/**/*.spec.ts",
     "src/**/*.spec.js",
     "src/**/*.test.ts",

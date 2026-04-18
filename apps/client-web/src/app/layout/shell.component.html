@@ -1,0 +1,15 @@
+<!-- CONTENEDOR MAESTRO: Aquí fluye la sintonía de fondo -->
+<div class="flex flex-col min-h-screen">
+
+  <!-- Identidad superior fija -->
+  <app-header class="sticky top-0 z-50"></app-header>
+
+  <!-- EL PORTAL: Aquí cargan NichoView y ProductDetail -->
+  <main class="flex-grow">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Ancla institucional -->
+  <app-footer></app-footer>
+
+</div>

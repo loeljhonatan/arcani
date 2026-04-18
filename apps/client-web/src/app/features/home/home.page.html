@@ -1,0 +1,35 @@
+<div class="flex flex-col items-center justify-center min-h-[80vh] text-center px-6">
+
+      <!-- Título con Glitch/Glow Neón -->
+      <h1 class="text-6xl md:text-8xl font-maestra font-bold text-aura mb-6 drop-shadow-[0_0_15px_rgba(var(--niche-primary-raw),0.5)]">
+        ARCANI
+      </h1>
+
+      <p class="text-xl md:text-2xl font-tecnica max-w-2xl mb-12 opacity-80">
+        Bienvenido al Multiverso del Coleccionismo.
+        Sintoniza tu frecuencia y explora piezas de edición limitada.
+      </p>
+
+      <!-- Botón de Acción con Destello (3%) -->
+      <button
+        routerLink="/anime"
+        class="btn-destello px-10 py-4 rounded-full text-lg hover:scale-105 transition-transform shadow-aura-neon">
+        EXPLORAR PORTALES
+      </button>
+
+      <!-- Grid de Nichos (Acceso Rápido) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 w-full max-w-5xl">
+        <a routerLink="/anime" class="arcani-card p-6 hover:border-aura cursor-pointer group">
+          <span class="group-hover:text-aura transition-colors">ANIME</span>
+        </a>
+        <a routerLink="/kpop" class="arcani-card p-6 hover:border-aura cursor-pointer group">
+          <span class="group-hover:text-aura transition-colors">K-POP</span>
+        </a>
+        <a routerLink="/gaming" class="arcani-card p-6 hover:border-aura cursor-pointer group">
+          <span class="group-hover:text-aura transition-colors">GAMING</span>
+        </a>
+        <a routerLink="/manga" class="arcani-card p-6 hover:border-aura cursor-pointer group">
+          <span class="group-hover:text-aura transition-colors">MANGA</span>
+        </a>
+      </div>
+    </div>

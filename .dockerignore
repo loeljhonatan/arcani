@@ -1,0 +1,9 @@
+# Seguridad ARCANI
+firebase-service-account.json
+node_modules
+.env
+dist
+.git
+.nx
+tmp
+*.md

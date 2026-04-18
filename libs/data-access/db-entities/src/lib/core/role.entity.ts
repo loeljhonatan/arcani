@@ -1,25 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, type Relation } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
-import { ArcaniBaseEntity } from '../base.entity';
-import { RoleLevel } from './role-level.entity';
+
+import { ArcaniInternalIdEntity } from '../base-internal.entity.js';
+import { RoleLevelEntity } from './role-level.entity.js';
 
 @Entity('role')
-export class Role extends ArcaniBaseEntity {
-
-  @PrimaryGeneratedColumn({
-    type: 'smallint',
-    unsigned: true
-  })
-  @Exclude() // ID interno de base de datos oculto
-  id_role!: number;
-
-  @Column({
-    type: 'tinyint',
-    unsigned: true,
-    name: 'id_level'
-  })
-  @Exclude() // Ocultamos la FK cruda, expondremos el objeto de la relación
-  id_level!: number;
+export class RoleEntity extends ArcaniInternalIdEntity{
 
   @Column({
     type: 'varchar',
@@ -37,10 +23,20 @@ export class Role extends ArcaniBaseEntity {
   @Expose()
   description!: string;
 
+  @Column({
+    type: 'tinyint',
+    unsigned: true,
+    name: 'id_level'
+  })
+  @Exclude() // 🛡️ El frontend nunca verá el FK.
+  id_level!: number;
+
   // --- RELACIONES ---
 
-  @ManyToOne(() => RoleLevel, (level) => level.roles)
+  @ManyToOne(() => RoleLevelEntity)
   @JoinColumn({ name: 'id_level' })
   @Expose() // Exponemos el nivel para saber si el rol es STRATEGIC, TACTICAL, etc.
-  level!: RoleLevel;
+  level!: Relation<RoleLevelEntity>; // Usa Relation<> aquí
+
 }
+

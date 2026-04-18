@@ -2,13 +2,18 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
-
+import 'reflect-metadata';
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { initializeFirebaseAdmin } from './app/modules/core-engine/auth/firebase-admin';
+
 
 async function bootstrap() {
+
+  // 0. 🔥 ENCENDEMOS EL MOTOR DE IDENTIDAD PRIMERO
+  initializeFirebaseAdmin();
 
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
@@ -19,7 +24,8 @@ async function bootstrap() {
   // Usamos 'excludeAll' para que NADA salga al frontend si no tiene @Expose()
   app.useGlobalInterceptors(
     new ClassSerializerInterceptor(app.get(Reflector), {
-      strategy: 'excludeAll',
+      strategy: 'excludeAll',// Opción segura: solo envía lo que tenga @Expose
+      excludeExtraneousValues: true, // Ignora campos que no estén en la entidad
     })
   );
 
@@ -45,6 +51,7 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(`${globalPrefix}/docs`, app, document);
+
 
   // 5. 🚀 LANZAMIENTO
   const port = process.env.PORT || 3000;

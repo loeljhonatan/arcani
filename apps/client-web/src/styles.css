@@ -1,21 +1,94 @@
-
 @import "tailwindcss";
 
-
-
+/* 1. CONFIGURACIÓN DEL SISTEMA (Tailwind 4 @theme) */
 @theme {
-  /* Registramos los colores vinculándolos a las variables que inyecta el ThemeService */
-  --color-primary: hsl(var(--niche-primary-raw) / <alpha-value>);
-  --color-accent: hsl(var(--niche-accent-raw) / <alpha-value>);
+  /* Mapeo de Colores Reactivos */
+  --color-aura: var(--color-aura);
+  --color-destello: var(--color-destello);
+  --color-aura-glass: var(--color-aura-glass);
 
-  /* Registramos el radio de borde dinámico */
-  --radius-niche: var(--niche-radius);
+  /* Radios y Blur dinámicos */
+  --radius-arcani: var(--niche-radius);
+  --blur-arcani: var(--niche-blur);
+
+  /* Fondos 90% */
+  --color-fondo-luz: var(--niche-bg-light);
+  --color-fondo-sombra: var(--niche-bg-dark);
+
+  /* Efectos Premium */
+  --shadow-aura-neon: 0 0 25px var(--color-aura-glow);
+  --shadow-destello-hit: 0 0 40px hsl(var(--niche-accent-raw) / 0.6);
+
+  /* Tipografías de ARCANI */
+  --font-maestra: "Syncopate", sans-serif;
+  --font-tecnica: "Rajdhani", sans-serif;
 }
 
-/* Base neutra para evitar errores de renderizado inicial */
-:root {
-  --niche-primary-raw: 190 100% 50%; /* Cian Maestro */
-  --niche-accent-raw: 60 100% 50%;   /* Amarillo Volt */
-  --niche-radius: 0.75rem;
+/* 2. VARIABLES DE ESTADO Y PROCESAMIENTO (Capa Base) */
+@layer base {
+  :root {
+    /* ADN Maestro por defecto (Cian/Amarillo) */
+    --niche-primary-raw: 180 100% 50%;
+    --niche-accent-raw: 56 100% 50%;
+    --niche-bg-light: #ffffff;
+    --niche-bg-dark: #0a0a0a;
+
+    /* Procesadores HSL (Cálculos dinámicos) */
+    --color-aura: hsl(var(--niche-primary-raw));
+    --color-destello: hsl(var(--niche-accent-raw));
+    --color-aura-glass: hsl(var(--niche-primary-raw) / 0.12);
+    --color-aura-glow: hsl(var(--niche-primary-raw) / 0.35);
+  }
+
+  body {
+    /* Regla del 90% */
+    background-color: light-dark(var(--niche-bg-light), var(--niche-bg-dark));
+    color: light-dark(#1a1a1a, #ffffff);
+    font-family: var(--font-tecnica);
+
+    /* Transición de Sintonía (Fricción Positiva) */
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.4s ease;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 }
 
+/* 3. COMPONENTES Y ESTADOS ESPECIALES (Capa Components) */
+@layer components {
+  /* Protocolo Bazar (Nebulosa Mística) */
+  [data-arcani-state="bazar"] {
+    /* Desaturación sutil para dar sensación de 'reliquia' o 'antigüedad' */
+    filter: grayscale(0.3) contrast(1.05);
+    transition: filter 1.2s ease-in-out;
+  }
+
+  /* El Aura de los componentes UI */
+  .arcani-card {
+    border-radius: var(--radius-arcani);
+    backdrop-filter: blur(var(--blur-arcani));
+    background: light-dark(rgba(255,255,255,0.7), rgba(0,0,0,0.4));
+    border: 1px solid var(--color-aura-glass);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .arcani-card:hover {
+    border-color: var(--color-aura);
+    box-shadow: var(--shadow-aura-neon);
+  }
+
+  /* Botón de Destello (3%) */
+  .btn-destello {
+    background-color: var(--color-destello);
+    color: #000;
+    font-family: var(--font-maestra);
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-destello:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-destello-hit);
+  }
+}
