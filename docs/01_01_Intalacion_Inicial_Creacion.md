@@ -10,6 +10,7 @@ En este Caso estamos Asignado el nombre arcani al protecto
 npx create-nx-workspace@latest arcani --preset=apps
 ```
 ----------------------------------------------------------------------------------------------------
+
 #### MENSAJE
 NX Let's create a new workspace [https://nx.dev/getting-started/intro]? Speed up your CI with Nx Cloud? ... YesSkip for nowNo, don't ask again
 
