@@ -1,31 +1,3 @@
-# Estructura Maestra Definitiva para el monorepo de ARCANI
-
-arcani /
-├── apps/                          # APLICACIONES (Entregables)
-│   ├── client-web/                # Angular 21: Tienda para el Fan (Tienda Online)
-│   ├── client-mobile/             # Angular + Ionic/Capacitor: App iOS/Android
-│   ├── admin-dashboard/           # Angular: Panel de Inventariado y Gestión
-│   └── api-gateway/               # NestJS: API única (Conexión a Postgres y Firebase)
-│
-├── libs/                          # LIBRERÍAS (Código Reutilizable - El Corazón)
-│   ├── shared/                    # --- Capa Compartida General ---
-│   │   ├── domain/                # Interfaces/DTOs puras (Product, User, Niche)
-│   │   ├── ui/                    # Componentes PrimeNG + Tailwind (Botones, Cards)
-│   │   └── auth/                  # Lógica de Firebase Google Auth + JWT
-│   │
-│   ├── core/                      # --- Capa de Lógica de Negocio ---
-│   │   ├── reactive-engine/       # Motor de Sintonía (Signals para cambio de colores)
-│   │   └── studio-logic/          # Reglas de personalización de ARCANI Studio
-│   │
-│   └── data-access/               # --- Capa de Comunicación ---
-│       ├── api-client/            # Servicios Angular para llamar a la API NestJS
-│       └── db-entities/           # Entidades de TypeORM para la base de datos
-│
-├── tools/                         # Scripts de automatización de Nx
-├── tailwind.config.js             # Configuración global de Tailwind (Variables CSS)
-└── nx.json                        # Configuración del monorepo
-
-
 
 # ======================================================================================================================================
 

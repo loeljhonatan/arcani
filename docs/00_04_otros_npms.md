@@ -147,7 +147,7 @@ npx typeorm migration:create libs/data-access/db-entities/src/lib/migrations/See
 
 
 
-
+# npm de Modulos Client-Web
 
 ```bash
 
@@ -170,8 +170,6 @@ mkdir -Force apps/client-web/src/app/features/home/components
 
 
 npx nx g c features/home/home --project=client-web --type=page --flat
-
-
 
 
 npx nx g c features/nicho-view/nicho-view --project=client-web --inline-style --skip-tests --type=page --flat
