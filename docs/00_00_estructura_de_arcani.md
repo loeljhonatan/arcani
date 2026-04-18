@@ -1,7 +1,7 @@
-# ESTRUCTURA RAIZ MONOREPO.
+# ESTRUCTURA DEL PROYECTO MONOREPO ARCANI.
 
 ## ESTRUCTURA RAIZ 
-### ESTRUCTURA RAIZ 
+📂 Estructura de arcani
 ```bash
 arcani/
 ├── .angular/                      # Cache de compilación de Angular (Auto-generado)
@@ -36,6 +36,7 @@ arcani/
 ```
 
 ##  ESTRUCTURA GENERAL
+📂 Estructura de arcani
 ```bash
 arcani/
 ├── apps/                          # --- APLICACIONES (Consumidores) ---
@@ -73,10 +74,9 @@ arcani/
 └── package.json                   # Angular 21, NestJS, PrimeNG, Tailwind 4
 ```
 
-# API GATAWAY
+## API GATAWAY
 
-## ESTRUCTURA GENERAL DE API GATAWAY
-
+### ESTRUCTURA GENERAL DE API GATAWAY
 📂 Estructura de apps/api-gateway
 ```bash
 apps/api-gateway/
@@ -113,8 +113,7 @@ apps/api-gateway/
 
 ```
 
-
-# ESTRUCTURA DETALLADA DE API GATAWAY
+### ESTRUCTURA DETALLADA DE API GATAWAY
 📂 Estructura de apps/api-gateway
 ```bash
 ├── src/
@@ -243,122 +242,15 @@ apps/api-gateway/
 
 ```
 
+## API CLIENT WEB
 
-# data-access/db-entities
-
-libs/data-access/db-entities/
-├── src/
-│   ├── index.ts                        # EL ORÁCULO: Exportación total de Entidades y Tipos
-│   └── lib/
-│       ├── core/                       # --- DOMINIO: ADN Y SISTEMA ---
-│       │   ├── role-level.entity.ts    # Jerarquía de Poder (Extiende: Internal)
-│       │   ├── role.entity.ts          # Cargos específicos (Extiende: Internal)
-│       │   ├── niche.entity.ts         # Fuente de Verdad (Extiende: External)
-│       │   ├── niche-stock.entity.ts   # Bazar Engine / Caché Analítica
-│       │   ├── niche-theme.entity.ts   # Motor Reactivo HSL
-│       │   ├── niche-identity.entity.ts# Capa de Branding y Lore
-│       │   ├── event.entity.ts         # Anarquía Temporal
-│       │   └── niche-event.entity.ts   # Conector de Realidades
-│       │
-│       ├── store/                      # --- DOMINIO: EXPERIENCIA COMERCIAL ---
-│       │   ├── product.entity.ts       # El Padre / La Card (Extiende: External)
-│       │   ├── product-niche.entity.ts # Ubicuidad de productos
-│       │   ├── product-image.entity.ts # Galería de Familia
-│       │   ├── product-variant.entity.ts # El SKU Comercial y Precio
-│       │   └── variant-image.entity.ts # Fidelidad Visual del Modelo
-│       │
-│       ├── operations/                 # --- DOMINIO: GOBERNANZA LOGÍSTICA ---
-│       │   └── stock-lot.entity.ts     # Corazón del PEPS y Veto
-│       │
-│       ├── users/                      # --- DOMINIO: IDENTIDAD ---
-│       │   └── user.entity.ts          # Identidad Delegada Firebase (Extiende: External)
-│       │
-│       ├── migrations/                 # --- PERSISTENCIA: CONTROL DE VERSIONES ---
-│       │   └── 1713210000-InitialSchema.ts # Historial físico de MySQL
-│       │
-│       ├── subscribers/                # --- GESTIÓN REACTIVA GLOBAL ---
-│       │   ├── stock-safety.subscriber.ts # Alerta de stock crítico (Bazar Mode)
-│       │   └── audit.subscriber.ts       # Rastro de cambios estratégico
-│       │
-│       ├── transformers/               # --- PUENTES TÉCNICOS ---
-│       │   └── uuid-binary.transformer.ts # Conversor BINARY(16) ↔ UUID String
-│       │
-│       ├── base.entity.ts              # EL ANCESTRO: Auditoría (Created/Updated/Active)
-│       ├── base-internal.entity.ts     # IDENTIDAD CORTA: (ID: TINYINT)
-│       └── base-external.entity.ts     # IDENTIDAD PÚBLICA: (ID: BIGINT + UUID: BINARY16)
-
-
-# shared/domain
-📂 shared/domain
-
-libs/shared/domain/
-├── src/
-│   ├── index.ts                        # EL MANIFIESTO: Exportación pública de toda la lib
-│   └── lib/
-│       ├── constants/                  # --- CONFIGURACIÓN ESTRATÉGICA ---
-│       │   ├── api.token.ts            # El Enchufe: InjectionToken para ARCANI_API_URL
-│       │   ├── api-routes.ts           # El Mapa: Diccionario de Endpoints (Nichos, Auth, etc.)
-│       │   └── branding.constants.ts   # El ADN: Colores maestros (Cian Core / Amarillo Volt)
-│       │
-│       ├── interfaces/                 # --- ESTRUCTURAS LÓGICAS (CONTRATOS) ---
-│       │   ├── core/                   # ADN del Ecosistema
-│       │   │   ├── niche.interface.ts  # Contrato del Nicho y su Metadata
-│       │   │   └── role.interface.ts   # Definición de jerarquías RBAC
-│       │   ├── store/                  # Experiencia Comercial
-│       │   │   ├── product.interface.ts# Estructura de la Card/Producto
-│       │   │   └── stock.interface.ts  # Contrato de disponibilidad y Veto
-│       │   └── users/                  # Identidad
-│       │       └── user.interface.ts   # Perfil de usuario (Firebase + Roles)
-│       │
-│       ├── dtos/                       # --- BLINDAJE DE ENTRADA (NestJS + Swagger) ---
-│       │   ├── auth/                   # Seguridad de Acceso
-│       │   │   └── login.dto.ts        # Validación de credenciales Firebase
-│       │   ├── nichos/                 # Gestión de Fandoms
-│       │   │   ├── create-niche.dto.ts # Decoradores @ApiProperty para Swagger
-│       │   │   └── update-niche.dto.ts # Actualización parcial (Patch)
-│       │   └── store/                  # Movimientos de Inventario
-│       │       └── create-product.dto.ts
-│       │
-│       ├── types/                      # --- TIPADOS ESPECIALIZADOS ---
-│       │   ├── sintonía.type.ts        # Tipos HSL (90/7/3) para el Motor Reactivo
-│       │   ├── http-response.type.ts   # Estándar de respuestas de la API (Success/Error)
-│       │   └── common.types.ts         # Alias de tipos (UUID, Email, etc.)
-│       │
-│       └── enums/                      # --- DICCIONARIOS INMUTABLES ---
-│           ├── roles.enum.ts           # STRATEGIC, TACTICAL, OPERATIVE
-│           ├── stock-status.enum.ts    # DISPONIBLE, PENUMBRA (Bajo Stock), VETO
-│           └── fandom.enum.ts          # ANIME, KPOP, GAMING, etc.
-
-
-
-# libs/core/reactive-engine/
-
-libs/core/reactive-engine/
-├── src/
-│   ├── index.ts                        # El Manifiesto: Exporta el Service y el Provider
-│   └── lib/
-│       ├── services/                   # --- EL CEREBRO ---
-│       │   ├── theme-engine.service.ts # Centralizador: Gestiona el estado con Signals
-│       │   ├── luma-analyzer.service.ts# Validador de contraste (WCAG) y Safe-Colors
-│       │   └── bazar-engine.service.ts # Lógica de efectos de escasez (Nebulosa)
-│       │
-│       ├── tokens/                     # --- CONFIGURACIÓN ---
-│       │   └── theme-config.token.ts   # Inyección de ADN Maestro por defecto
-│       │
-│       ├── types/                      # --- LÓGICA DE CÁLCULO ---
-│       │   └── engine-state.type.ts    # Estado interno del motor (Cargando, Sintonizado)
-│       │
-│       └── utils/                      # --- HELPERS MATEMÁTICOS ---
-│           ├── color-converters.util.ts# HSL String -> Variaciones de opacidad
-│           └── dom-injector.util.ts    # Escribe directamente en el Document Body
-
-
-
-
-
-# apps/client-web/src/app/
-
-
+### ESTRUCTURA GENERAL DE CLIENT WEB
+📂 Estructura de apps/client-web
+```bash
+```
+### ESTRUCTURA DETALLADA DE DE CLIENT WEB
+📂 Estructura de apps/client-web
+```bash
 apps/client-web/src/app/
 ├── core/                               # --- EL NODO CENTRAL (SINGLETONS) ---
 │   ├── guards/
@@ -421,3 +313,144 @@ apps/client-web/src/app/
 ├── app.routes.ts                       # EL MAPA DE NAVEGACIÓN
 ├── app.ts                              # COMPONENTE RAÍZ (Root Component)
 └── app.html                            # EL LIENZO PRINCIPAL (<router-outlet>)
+
+```
+## CORE
+###  CORE / REACTIVE ENGINE
+📂 Estructura de libs/core/reactive-engine/
+
+```bash
+libs/core/reactive-engine/
+├── src/
+│   ├── index.ts                        # El Manifiesto: Exporta el Service y el Provider
+│   └── lib/
+│       ├── services/                   # --- EL CEREBRO ---
+│       │   ├── theme-engine.service.ts # Centralizador: Gestiona el estado con Signals
+│       │   ├── luma-analyzer.service.ts# Validador de contraste (WCAG) y Safe-Colors
+│       │   └── bazar-engine.service.ts # Lógica de efectos de escasez (Nebulosa)
+│       │
+│       ├── tokens/                     # --- CONFIGURACIÓN ---
+│       │   └── theme-config.token.ts   # Inyección de ADN Maestro por defecto
+│       │
+│       ├── types/                      # --- LÓGICA DE CÁLCULO ---
+│       │   └── engine-state.type.ts    # Estado interno del motor (Cargando, Sintonizado)
+│       │
+│       └── utils/                      # --- HELPERS MATEMÁTICOS ---
+│           ├── color-converters.util.ts# HSL String -> Variaciones de opacidad
+│           └── dom-injector.util.ts    # Escribe directamente en el Document Body
+
+```
+
+
+## DATA ACCESS
+###  DATA ACCESS / DB ENTITIES
+📂 Estructura de libs/data-access/db-entities/
+```bash
+libs/data-access/db-entities/
+├── src/
+│   ├── index.ts                        # EL ORÁCULO: Exportación total de Entidades y Tipos
+│   └── lib/
+│       ├── core/                       # --- DOMINIO: ADN Y SISTEMA ---
+│       │   ├── role-level.entity.ts    # Jerarquía de Poder (Extiende: Internal)
+│       │   ├── role.entity.ts          # Cargos específicos (Extiende: Internal)
+│       │   ├── niche.entity.ts         # Fuente de Verdad (Extiende: External)
+│       │   ├── niche-stock.entity.ts   # Bazar Engine / Caché Analítica
+│       │   ├── niche-theme.entity.ts   # Motor Reactivo HSL
+│       │   ├── niche-identity.entity.ts# Capa de Branding y Lore
+│       │   ├── event.entity.ts         # Anarquía Temporal
+│       │   └── niche-event.entity.ts   # Conector de Realidades
+│       │
+│       ├── store/                      # --- DOMINIO: EXPERIENCIA COMERCIAL ---
+│       │   ├── product.entity.ts       # El Padre / La Card (Extiende: External)
+│       │   ├── product-niche.entity.ts # Ubicuidad de productos
+│       │   ├── product-image.entity.ts # Galería de Familia
+│       │   ├── product-variant.entity.ts # El SKU Comercial y Precio
+│       │   └── variant-image.entity.ts # Fidelidad Visual del Modelo
+│       │
+│       ├── operations/                 # --- DOMINIO: GOBERNANZA LOGÍSTICA ---
+│       │   └── stock-lot.entity.ts     # Corazón del PEPS y Veto
+│       │
+│       ├── users/                      # --- DOMINIO: IDENTIDAD ---
+│       │   └── user.entity.ts          # Identidad Delegada Firebase (Extiende: External)
+│       │
+│       ├── migrations/                 # --- PERSISTENCIA: CONTROL DE VERSIONES ---
+│       │   └── 1713210000-InitialSchema.ts # Historial físico de MySQL
+│       │
+│       ├── subscribers/                # --- GESTIÓN REACTIVA GLOBAL ---
+│       │   ├── stock-safety.subscriber.ts # Alerta de stock crítico (Bazar Mode)
+│       │   └── audit.subscriber.ts       # Rastro de cambios estratégico
+│       │
+│       ├── transformers/               # --- PUENTES TÉCNICOS ---
+│       │   └── uuid-binary.transformer.ts # Conversor BINARY(16) ↔ UUID String
+│       │
+│       ├── base.entity.ts              # EL ANCESTRO: Auditoría (Created/Updated/Active)
+│       ├── base-internal.entity.ts     # IDENTIDAD CORTA: (ID: TINYINT)
+│       └── base-external.entity.ts     # IDENTIDAD PÚBLICA: (ID: BIGINT + UUID: BINARY16)
+```
+
+## SHARED
+###  SHARED / DOMAIN
+📂 Estructura de libs/shared/domain/
+```bash
+libs/shared/domain/
+├── src/
+│   ├── index.ts                        # EL MANIFIESTO: Exportación pública de toda la lib
+│   └── lib/
+│       ├── constants/                  # --- CONFIGURACIÓN ESTRATÉGICA ---
+│       │   ├── api.token.ts            # El Enchufe: InjectionToken para ARCANI_API_URL
+│       │   ├── api-routes.ts           # El Mapa: Diccionario de Endpoints (Nichos, Auth, etc.)
+│       │   └── branding.constants.ts   # El ADN: Colores maestros (Cian Core / Amarillo Volt)
+│       │
+│       ├── interfaces/                 # --- ESTRUCTURAS LÓGICAS (CONTRATOS) ---
+│       │   ├── core/                   # ADN del Ecosistema
+│       │   │   ├── niche.interface.ts  # Contrato del Nicho y su Metadata
+│       │   │   └── role.interface.ts   # Definición de jerarquías RBAC
+│       │   ├── store/                  # Experiencia Comercial
+│       │   │   ├── product.interface.ts# Estructura de la Card/Producto
+│       │   │   └── stock.interface.ts  # Contrato de disponibilidad y Veto
+│       │   └── users/                  # Identidad
+│       │       └── user.interface.ts   # Perfil de usuario (Firebase + Roles)
+│       │
+│       ├── dtos/                       # --- BLINDAJE DE ENTRADA (NestJS + Swagger) ---
+│       │   ├── auth/                   # Seguridad de Acceso
+│       │   │   └── login.dto.ts        # Validación de credenciales Firebase
+│       │   ├── nichos/                 # Gestión de Fandoms
+│       │   │   ├── create-niche.dto.ts # Decoradores @ApiProperty para Swagger
+│       │   │   └── update-niche.dto.ts # Actualización parcial (Patch)
+│       │   └── store/                  # Movimientos de Inventario
+│       │       └── create-product.dto.ts
+│       │
+│       ├── types/                      # --- TIPADOS ESPECIALIZADOS ---
+│       │   ├── sintonía.type.ts        # Tipos HSL (90/7/3) para el Motor Reactivo
+│       │   ├── http-response.type.ts   # Estándar de respuestas de la API (Success/Error)
+│       │   └── common.types.ts         # Alias de tipos (UUID, Email, etc.)
+│       │
+│       └── enums/                      # --- DICCIONARIOS INMUTABLES ---
+│           ├── roles.enum.ts           # STRATEGIC, TACTICAL, OPERATIVE
+│           ├── stock-status.enum.ts    # DISPONIBLE, PENUMBRA (Bajo Stock), VETO
+│           └── fandom.enum.ts          # ANIME, KPOP, GAMING, etc.
+
+```
+
+
+
+
+
+
+
+```bash
+
+
+```
+
+
+```bash
+
+
+```
+
+
+```bash
+
+
+```
