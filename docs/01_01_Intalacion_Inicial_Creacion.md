@@ -19,7 +19,6 @@ NX ¿Creamos un nuevo espacio de trabajo [https://nx.dev/getting-started/intro]?
 ¿Por qué? Como estamos en la fase inicial de desarrollo de ARCANI, no necesitamos configurar la nube todavía. Queremos centrar toda la potencia en estructurar los 16 nichos, el inventariado y la app móvil en tu máquina local. Podrás activar Nx Cloud más adelante con un solo comando si el proyecto crece mucho.
 
 ----------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
 > #### Mensaje 
 HELP IMPROVE NX BY SHARING YOU USAGE DATA?
 
@@ -206,6 +205,7 @@ Selecciona esbuild. ¿Por qué elegir esbuild para el Admin Dashboard?
 Consistencia: Al usar el mismo motor que en la web-arcani, garantizas que los componentes de PrimeNG y los estilos de Tailwind se comporten exactamente igual en ambas aplicaciones.
 Rendimiento en el Panel: El dashboard de inventariado suele manejar tablas grandes y muchos datos. esbuild optimiza el empaquetado para que la carga inicial sea ultrarrápida.
 Preparado para el Futuro: Es el estándar de Angular 21 y el que mejor soporte tiene para Signals, lo que te permitirá ver cambios de stock o estados de "ARCANI Studio" en tiempo real sin recargas pesadas.
+
 ----------------------------------------------------------------------------------------------------
 
 > #### MENSAJE 
@@ -361,6 +361,8 @@ ________________________________________________________________________________
 ## ¡El Workspace está listo! 🚀
 Ahora que Nx terminó de generar la estructura
 
+____________________________________________________________________________________________________
+                                        ₍₍⚞(˶ˆᗜˆ˵)⚟⁾⁾
 ____________________________________________________________________________________________________
 ____________________________________________________________________________________________________
 ____________________________________________________________________________________________________
